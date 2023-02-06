@@ -22,6 +22,7 @@ export const Value = styled.div`
 `
 
 export const PageContainer = styled.div`
-    margin: 2em;
+    margin: 0 20vw 0 20vw;
+    max-width: 60vw;
 `
 

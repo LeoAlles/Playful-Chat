@@ -22,10 +22,11 @@ function RoomMapper(response :RoomResponse): Room{
 }
 
 export default class RoomService{
-    private static endpoint = 'api/rooms/search'
+    private static endpoint = 'http://localhost:8080/api/rooms/search'
 
-    static async searchAll(){
-        const response = await axios.get<null, RoomResponse[]>(this.endpoint)
-        return response.map(RoomMapper)
+    public static async searchAll(){
+        const response = await axios.get(this.endpoint)
+
+        return response.data.map(RoomMapper)
     }
 }
