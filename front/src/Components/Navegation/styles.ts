@@ -9,10 +9,11 @@ export const NavbarContainter = styled.header`
 `
 
 export const Link = styled(RouterLink)`
-    color: #000;
+    color: #333;
     text-decoration: none;
     padding: 1.5em;
+    font-weight: bold;
     :hover{
-        color: #444;
+        color: #777;
     }
 `
