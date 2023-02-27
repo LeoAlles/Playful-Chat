@@ -7,7 +7,7 @@ import RoomService from "../../../Services/RoomService"
 
 export default function RoomSearch(){
     const [rooms, setRooms] = useState<Room[]>([])
-    
+
     useEffect(()=>{
         RoomService.searchAll()
             .then( data => setRooms(data))

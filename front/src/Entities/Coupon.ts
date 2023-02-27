@@ -1,26 +1,23 @@
 import { Moment } from "moment"
 import User from "./User"
 
-class Room {
+class Coupon {
     id: number
-    name: string
+    code: string
     creator: User
-    totalUsers: number
     dateCreated: Moment
 
     constructor( 
         id: number,
-        name: string,
+        code: string,
         creator: User,
-        totalUsers: number,
         dateCreated: Moment
     ){
         this.id = id
-        this.name = name
+        this.code = code
         this.creator = creator
-        this.totalUsers = totalUsers
         this.dateCreated = dateCreated
     }
 }
 
-export default Room
+export default Coupon

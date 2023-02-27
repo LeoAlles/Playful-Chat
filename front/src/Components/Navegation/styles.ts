@@ -16,4 +16,7 @@ export const Link = styled(RouterLink)`
     :hover{
         color: #777;
     }
+    :nth-child(1){
+        margin-left: 20vw;
+    }
 `
