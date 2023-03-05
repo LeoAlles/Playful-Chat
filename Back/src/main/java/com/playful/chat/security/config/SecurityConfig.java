@@ -30,10 +30,9 @@ public class SecurityConfig {
 
                 .and()
                     .authorizeRequests()
-                        .antMatchers("/*/**/publico").permitAll()
-                        .antMatchers(POST, "/usuarios").permitAll()
-                        .antMatchers(GET, "/livros").permitAll()
-
+                        .antMatchers(POST, "/users/**").permitAll()
+                .antMatchers("/api/**").permitAll()
+                .antMatchers(POST, "/login").permitAll()
                 .and()
                     .authorizeRequests()
                         .anyRequest().authenticated()
@@ -44,8 +43,7 @@ public class SecurityConfig {
 
                 .and()
                     .logout()
-                        .logoutSuccessHandler((request, response, authentication) -> response.setStatus(OK.value()))
-        ;
+                        .logoutSuccessHandler((request, response, authentication) -> response.setStatus(OK.value()));
 
         return http.build();
     }

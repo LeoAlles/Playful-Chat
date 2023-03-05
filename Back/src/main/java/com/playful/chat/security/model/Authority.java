@@ -1,6 +1,6 @@
-package com.playful.chat.security.domain;
+package com.playful.chat.security.model;
 
-import com.playful.chat.model.User;
+import com.playful.chat.model.UserModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +24,5 @@ public class Authority {
 
     @ManyToOne
     @JoinColumn(name = "user_model_id")
-    private User userModel;
+    private UserModel userModel;
 }

@@ -7,27 +7,24 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UsuarioRequest {
+public class UserRequest {
 
     @NotBlank
     @Length(max = 255)
-    private String nome;
+    private String name;
 
     @Email
     @NotNull
     @Length(max = 255)
     private String email;
 
-    @Length(max = 50)
-    private String nickname;
-
-    @Length(max = 512)
-    private String imagemPerfil;
-
     @NotBlank
     @Length(max = 128)
-    private String senha;
+    private String password;
+
+    private String birthDate;
 }

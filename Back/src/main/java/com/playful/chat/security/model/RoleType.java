@@ -1,4 +1,4 @@
-package com.playful.chat.security.domain;
+package com.playful.chat.security.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.playful.chat.security.config;
 
-import com.playful.chat.model.User;
+import com.playful.chat.model.UserModel;
 import lombok.Getter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,19 +21,19 @@ public class UserSecurity implements UserDetails {
     private final boolean credentialsNonExpired;
     private final boolean enabled;
 
-    public UserSecurity(User user) {
+    public UserSecurity(UserModel userModel) {
 
-        this.id = user.getId();
-        this.username = user.getEmail();
-        this.password = user.getSenha();
+        this.id = userModel.getId();
+        this.username = userModel.getEmail();
+        this.password = userModel.getPassword();
 
-        this.accountNonExpired = user.isAtivo();
-        this.accountNonLocked = user.isAtivo();
-        this.credentialsNonExpired = user.isAtivo();
-        this.enabled = user.isAtivo();
+        this.accountNonExpired = userModel.isActive();
+        this.accountNonLocked = userModel.isActive();
+        this.credentialsNonExpired = userModel.isActive();
+        this.enabled = userModel.isActive();
 
-        this.authorities = user.getPermissoes().stream()
-                .map(permissao -> new SimpleGrantedAuthority(permissao.getRoleType().getRole()))
+        this.authorities = userModel.getAuthorities().stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.getRoleType().getRole()))
                 .collect(Collectors.toList());
     }
 }
