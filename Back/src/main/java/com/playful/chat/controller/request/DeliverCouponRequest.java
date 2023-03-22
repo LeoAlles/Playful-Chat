@@ -1,4 +1,4 @@
-package com.playful.chat.controller;
+package com.playful.chat.controller.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

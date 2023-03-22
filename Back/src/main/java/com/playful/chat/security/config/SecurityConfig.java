@@ -34,9 +34,7 @@ public class SecurityConfig {
                 .antMatchers("/api/**").permitAll()
                 .antMatchers(POST, "/login").permitAll()
                 .and()
-                    .authorizeRequests()
-                        .anyRequest().authenticated()
-
+                .authorizeRequests().antMatchers("/ws/**").permitAll()
                 .and()
                     .httpBasic()
                         .authenticationEntryPoint((request, response, authException) -> response.setStatus(UNAUTHORIZED.value()))

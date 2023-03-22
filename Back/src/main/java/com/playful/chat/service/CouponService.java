@@ -1,6 +1,6 @@
 package com.playful.chat.service;
 
-import com.playful.chat.controller.DeliverCouponRequest;
+import com.playful.chat.controller.request.DeliverCouponRequest;
 import com.playful.chat.model.Coupon;
 import com.playful.chat.model.UserModel;
 import com.playful.chat.repository.CouponRepository;
