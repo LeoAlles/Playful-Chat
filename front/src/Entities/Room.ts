@@ -1,24 +1,25 @@
 import { Moment } from "moment"
 import User from "./User"
+import Message from "./Message"
 
 class Room {
     id: number
     name: string
     creator: User
-    totalUsers: number
     dateCreated: Moment
+    messages: Message[]
 
     constructor( 
         id: number,
         name: string,
         creator: User,
-        totalUsers: number,
+        messages: Message[],
         dateCreated: Moment
     ){
         this.id = id
         this.name = name
         this.creator = creator
-        this.totalUsers = totalUsers
+        this.messages = messages
         this.dateCreated = dateCreated
     }
 }

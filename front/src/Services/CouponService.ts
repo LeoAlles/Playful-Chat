@@ -6,30 +6,18 @@ import { UserResponse, UserMapper } from './UserService'
 
 type CouponResponse = {
   id: number
+  store: string
   code: string
   creator: UserResponse
-  dateCreated: string
   owner: UserResponse | null
 }
 
 type CouponCreatePayload = {
+  store: string
   code: string
   creatorId: number
-  dateCreated: Moment
-  owner?: number
 }
 
-type CouponUpdatePayload = {
-  id: number
-  code: string
-  creatorId?: number
-  dateCreated?: Moment
-  ownerId?: number
-}
-
-type CouponDeletePayload = {
-  id: number
-}
 
 const CouponMapper = (response: CouponResponse): Coupon => {
   const creator = UserMapper(response.creator)
@@ -56,20 +44,6 @@ export default class CouponService {
 
   public static async create(coupon: CouponCreatePayload) {
     const response = await axios.post(this.endpoint, coupon)
-
-    return CouponMapper(response.data)
-  }
-
-  public static async update(coupon: CouponUpdatePayload) {
-    const response = await axios.put(this.endpoint, coupon)
-
-    return CouponMapper(response.data)
-  }
-
-  public static async delete(coupon: CouponDeletePayload) {
-    const response = await axios.delete(
-      `${this.endpoint}/${coupon.id}`,
-    )
 
     return CouponMapper(response.data)
   }

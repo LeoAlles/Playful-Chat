@@ -15,11 +15,7 @@ export default function({room}:props){
             </FieldContainer>
             <FieldContainer>
                 <Name>Creator</Name>
-                <Value>{room.creator}</Value>
-            </FieldContainer>
-            <FieldContainer>
-                <Name>TotalUsers</Name>
-                <Value>{room.totalUsers}</Value>
+                <Value>{room.creator.name}</Value>
             </FieldContainer>
             <FieldContainer>
                 <Name>Created On</Name>

@@ -2,12 +2,15 @@ import Room from "../Entities/Room"
 import moment from "moment";
 import axios from 'axios'
 import User from "../Entities/User";
+import Message from "../Entities/Message";
+import { UserResponse } from "./UserService";
+import { messageResponse } from "./MessageService";
 
 type RoomResponse = {
     id: number
     name: string
-    creator: User
-    totalUsers: number
+    creator: UserResponse
+    messages: messageResponse[]
     dateCreated: string
 }
 
@@ -18,13 +21,6 @@ type RoomCreatePayload = {
     dateCreated: string
 }
 
-type RoomUpdatePayload = {
-    id: number
-    name: string
-    creator: string
-    totalUsers: number
-    dateCreated: string
-}
 
 type RoomDeletePayload = {
     id: number
@@ -36,7 +32,7 @@ function RoomMapper(response :RoomResponse): Room{
         response.id,
         response.name,
         response.creator,
-        response.totalUsers,
+        response.messages,
         dateCreated
     )
 }
@@ -50,14 +46,14 @@ export default class RoomService{
         return response.data.map(RoomMapper)
     }
 
-    public static async create(room : RoomCreatePayload){
-        const response = await axios.post(this.endpoint, room)
+    public static async get(roomId: number){
+        const response = await axios.get(this.endpoint + '/detail/' + roomId)
 
-        return RoomMapper(response.data)
+        return response
     }
 
-    public static async update(room : RoomUpdatePayload){
-        const response = await axios.put(this.endpoint, room)
+    public static async create(room : RoomCreatePayload){
+        const response = await axios.post(this.endpoint, room)
 
         return RoomMapper(response.data)
     }

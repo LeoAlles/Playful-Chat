@@ -7,20 +7,20 @@ class Message {
     text: string
     sender: User
     timestamp: Moment
-    room: Room
+    roomId: number
 
     constructor( 
         id: number,
         text: string,
         sender: User,
         timestamp: Moment,
-        room: Room
+        roomId: number
     ){
         this.id = id
         this.text = text
         this.sender = sender
         this.timestamp = timestamp
-        this.room = room
+        this.roomId = roomId
     }
 }
 

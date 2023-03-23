@@ -18,18 +18,6 @@ export type UserCreatePayload = {
   birthdate: Moment
 }
 
-export type UserUpdatePayload = {
-  id: number
-  name: string
-  email: string
-  password: string
-  birthdate: Moment
-}
-
-export type UserDeletePayload = {
-  id: number
-}
-
 export const UserMapper = (response: UserResponse): User => {
   const birthdate = moment(response.birthdate)
 
@@ -53,20 +41,6 @@ export default class UserService {
 
   public static async create(user: UserCreatePayload) {
     const response = await axios.post(this.endpoint, user)
-
-    return UserMapper(response.data)
-  }
-
-  public static async update(user: UserUpdatePayload) {
-    const response = await axios.put(this.endpoint, user)
-
-    return UserMapper(response.data)
-  }
-
-  public static async delete(user: UserDeletePayload) {
-    const response = await axios.delete(
-      this.endpoint + `/${user.id}`,
-    )
 
     return UserMapper(response.data)
   }
