@@ -1,13 +1,29 @@
 import Room from "../Entities/Room"
 import moment from "moment";
 import axios from 'axios'
+import User from "../Entities/User";
+import Message from "../Entities/Message";
+import { UserResponse } from "./UserService";
+import { messageResponse } from "./MessageService";
 
 type RoomResponse = {
     id: number
     name: string
+    creator: UserResponse
+    messages: messageResponse[]
+    dateCreated: string
+}
+
+type RoomCreatePayload = {
+    name: string
     creator: string
     totalUsers: number
     dateCreated: string
+}
+
+
+type RoomDeletePayload = {
+    id: number
 }
 
 function RoomMapper(response :RoomResponse): Room{
@@ -16,17 +32,35 @@ function RoomMapper(response :RoomResponse): Room{
         response.id,
         response.name,
         response.creator,
-        response.totalUsers,
+        response.messages,
         dateCreated
     )
 }
 
 export default class RoomService{
-    private static endpoint = 'http://localhost:8080/api/rooms/search'
+    private static endpoint = 'http://localhost:8080/api/rooms'
 
     public static async searchAll(){
         const response = await axios.get(this.endpoint)
 
         return response.data.map(RoomMapper)
+    }
+
+    public static async get(roomId: number){
+        const response = await axios.get(this.endpoint + '/detail/' + roomId)
+
+        return response
+    }
+
+    public static async create(room : RoomCreatePayload){
+        const response = await axios.post(this.endpoint, room)
+
+        return RoomMapper(response.data)
+    }
+
+    public static async delete(room : RoomDeletePayload){
+        const response = await axios.delete(this.endpoint + `/${room.id}`)
+
+        return RoomMapper(response.data)
     }
 }
