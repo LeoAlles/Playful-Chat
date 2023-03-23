@@ -23,7 +23,7 @@ public class Message {
     private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private UserModel owner;
+    @JoinColumn(name = "sender_id")
+    private UserModel sender;
 
 }

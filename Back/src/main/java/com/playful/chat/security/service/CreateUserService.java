@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 import static com.playful.chat.mapper.UserMapper.toEntity;
 import static com.playful.chat.mapper.UserMapper.toResponse;
+import static com.playful.chat.security.model.RoleType.USER;
 import static com.playful.chat.security.model.RoleType.USUARIO;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
@@ -44,7 +45,7 @@ public class CreateUserService {
         userModel.setPassword(getEncryptedPassword(request.getPassword()));
         userModel.addAuthority(getDefaultAuthority());
         userModel.setActive(true);
-        userModel.setBirthDate(birthDate);
+        userModel.setBirthdate(birthDate);
 
         userRepository.save(userModel);
 
@@ -57,7 +58,7 @@ public class CreateUserService {
 
     private Authority getDefaultAuthority() {
         Authority authority = new Authority();
-        authority.setRoleType(USUARIO);
+        authority.setRoleType(USER);
         return authority;
     }
 }

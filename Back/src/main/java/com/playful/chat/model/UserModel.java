@@ -31,7 +31,7 @@ public class UserModel {
     @Column(nullable = false)
     private String password;
 
-    private LocalDate birthDate;
+    private LocalDate birthdate;
 
     @Column(nullable = false)
     private boolean active;
