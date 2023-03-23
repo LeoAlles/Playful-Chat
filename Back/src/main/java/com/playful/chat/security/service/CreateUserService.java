@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter;
 import static com.playful.chat.mapper.UserMapper.toEntity;
 import static com.playful.chat.mapper.UserMapper.toResponse;
 import static com.playful.chat.security.model.RoleType.USER;
-import static com.playful.chat.security.model.RoleType.USUARIO;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Service
