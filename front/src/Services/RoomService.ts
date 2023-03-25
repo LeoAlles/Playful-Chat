@@ -1,5 +1,5 @@
 import Room from "../Entities/Room"
-import moment from "moment";
+import moment, {Moment} from "moment";
 import axios from 'axios'
 import User from "../Entities/User";
 import Message from "../Entities/Message";
@@ -18,9 +18,8 @@ type RoomResponse = {
 
 type RoomCreatePayload = {
     name: string
-    creator: string
-    totalUsers: number
-    dateCreated: string
+    creatorId: number
+    dateCreated: Moment
 }
 
 
@@ -51,7 +50,7 @@ export default class RoomService{
     public static async get(roomId: number){
         const response = await axios.get(this.endpoint + '/detail/' + roomId)
 
-        return response
+        return RoomMapper(response.data)
     }
 
     public static async create(room : RoomCreatePayload){

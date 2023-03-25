@@ -6,20 +6,6 @@ import SelectCoupon from '../../Components/Selects/SelectCoupon/SelectCoupon'
 import Coupon from '../../Entities/Coupon';
 import LoginService from '../../Services/LoginService';
 
-const Container = styled.div``;
-
-const Form = styled.form``;
-
-const Label = styled.label``;
-
-const Input = styled.input``;
-
-const Button = styled.button``;
-
-type CreateGameProps = {
-  onCreate: (game: Game) => void;
-};
-
 function CreateGame() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
@@ -62,3 +48,13 @@ function CreateGame() {
 };
 
 export default CreateGame;
+
+const Container = styled.div``;
+
+const Form = styled.form``;
+
+const Label = styled.label``;
+
+const Input = styled.input``;
+
+const Button = styled.button``;

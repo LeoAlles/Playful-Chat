@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import LoginService from "../../Services/LoginService"
 import { HomeContainer, LoginCard, Form, Label, Submit, Input} from "./style"
+import styled from "styled-components";
+import NavButton from "../../Components/NavButton/NavButton";
 
 export default function Home(){
     const [name, setName] = useState("");
@@ -33,9 +35,17 @@ export default function Home(){
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Label>
+                    <FlexContainer>
+                    <NavButton link={'users/create'}>Sign UP</NavButton>
                     <Submit type="submit" value="Log In"/>
+                    </FlexContainer>
                 </Form>
             </LoginCard>
         </HomeContainer>
     )
 }
+
+const FlexContainer = styled.div `
+    display: flex;
+    justify-content: right;
+`
