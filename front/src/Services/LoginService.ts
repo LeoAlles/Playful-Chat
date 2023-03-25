@@ -30,7 +30,7 @@ export default class LoginService{
         return response.logged
     }
 
-    public getLogged(): User | undefined{
+    public static getLogged(): User | undefined{
         const logged = sessionStorage.getItem("logged")
         if(logged == "true"){
             return JSON.parse(sessionStorage.getItem("user") as string) as User

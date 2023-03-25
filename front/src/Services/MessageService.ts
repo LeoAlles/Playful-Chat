@@ -1,11 +1,13 @@
 import { UserResponse } from "./UserService"
-import { Moment } from "moment"
+import moment, { Moment } from "moment"
+import Message from "../Entities/Message"
+import { UserMapper } from "./UserService"
 
 export type messageResponse = {
     id: number
     text: string
     timestamp: Moment
-    senderId: UserResponse
+    sender: UserResponse
     roomId: number
 }
 
@@ -16,3 +18,16 @@ export type messageCreate = {
     senderId: number
     roomId: number
 }
+
+export const MessageMapper = (response: messageResponse): Message => {
+    const timestamp = moment(response.timestamp)
+  
+    return new Message(
+      response.id,
+      response.text,
+      UserMapper(response.sender),
+      timestamp,
+      response.roomId
+    )
+  }
+  

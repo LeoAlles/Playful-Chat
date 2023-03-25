@@ -4,7 +4,7 @@ import Coupon from '../Entities/Coupon'
 import moment from 'moment'
 import { UserResponse, UserMapper } from './UserService'
 
-type CouponResponse = {
+export type CouponResponse = {
   id: number
   store: string
   code: string
@@ -19,16 +19,15 @@ type CouponCreatePayload = {
 }
 
 
-const CouponMapper = (response: CouponResponse): Coupon => {
+export const CouponMapper = (response: CouponResponse): Coupon => {
   const creator = UserMapper(response.creator)
-  const dateCreated = moment(response.dateCreated)
   const owner = response.owner ? UserMapper(response.owner) : null
 
   return new Coupon(
     response.id,
+    response.store,
     response.code,
     creator,
-    dateCreated,
     owner,
   )
 }

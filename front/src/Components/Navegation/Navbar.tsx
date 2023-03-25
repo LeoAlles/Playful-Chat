@@ -5,8 +5,9 @@ export default function Navbar(){
     return (
         <NavbarContainter>
             <Link to="">Home</Link>
-            <Link to="rooms/search">Search Rooms</Link>
-            <Link to="rooms/room">Room 1</Link>
+            <Link to="rooms/search">Rooms</Link>
+            <Link to="coupons/search">Coupons</Link>
+            <Link to="games/search">Games</Link>
         </NavbarContainter>
     )
 }

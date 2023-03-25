@@ -5,6 +5,8 @@ import User from "../Entities/User";
 import Message from "../Entities/Message";
 import { UserResponse } from "./UserService";
 import { messageResponse } from "./MessageService";
+import { UserMapper } from "./UserService";
+import { MessageMapper } from "./MessageService";
 
 type RoomResponse = {
     id: number
@@ -31,8 +33,8 @@ function RoomMapper(response :RoomResponse): Room{
     return new Room(
         response.id,
         response.name,
-        response.creator,
-        response.messages,
+        UserMapper(response.creator),
+        response.messages.map(MessageMapper),
         dateCreated
     )
 }
