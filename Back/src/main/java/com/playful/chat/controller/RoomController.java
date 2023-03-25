@@ -17,10 +17,16 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-    @GetMapping("/search")
+    @GetMapping
     public List<RoomResponse> listRooms() {
         return roomService.list();
     }
+
+    @GetMapping("/name/{name}")
+    public List<RoomResponse> listRooms(@PathVariable String name) {
+        return roomService.listByName(name);
+    }
+
 
     @PostMapping("/create")
     public RoomResponse create(@Valid @RequestBody CreateRoomRequest createRoomRequest) {
@@ -31,6 +37,8 @@ public class RoomController {
     public RoomResponse detail(@PathVariable Long roomId ) {
         return roomService.detail(roomId);
     }
+
+
 
     @DeleteMapping("/delete/{roomId}")
     public void delete(@PathVariable Long roomId) {
