@@ -31,7 +31,7 @@ export const UserMapper = (response: UserResponse): User => {
 }
 
 export default class UserService {
-  private static endpoint = 'http://localhost:3000'
+  private static endpoint = 'http://127.0.0.1:8080'
 
   public static async searchAll() {
     const response = await axios.get(this.endpoint)

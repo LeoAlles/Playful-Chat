@@ -13,7 +13,7 @@ export type loginResponse = {
 }
 
 export default class LoginService{
-    private static endpoint = 'http://localhost:3000/login'
+    private static endpoint = 'http://localhost:8080/login'
 
     public static async login(userName: string, passWord: string){
         

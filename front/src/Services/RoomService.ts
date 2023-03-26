@@ -39,7 +39,7 @@ function RoomMapper(response :RoomResponse): Room{
 }
 
 export default class RoomService{
-    private static endpoint = 'http://localhost:3000/api/rooms'
+    private static endpoint = 'http://localhost:8080/api/rooms'
 
     public static async searchAll(){
         const response = await axios.get(this.endpoint, { withCredentials: true })
