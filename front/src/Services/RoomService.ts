@@ -12,7 +12,6 @@ type RoomResponse = {
     id: number
     name: string
     creator: UserResponse
-    messages: messageResponse[]
     dateCreated: string
 }
 
@@ -29,11 +28,11 @@ type RoomDeletePayload = {
 
 function RoomMapper(response :RoomResponse): Room{
     const dateCreated = moment(response.dateCreated)
+
     return new Room(
         response.id,
         response.name,
         UserMapper(response.creator),
-        response.messages.map(MessageMapper),
         dateCreated
     )
 }
