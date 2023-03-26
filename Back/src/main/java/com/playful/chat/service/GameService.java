@@ -38,12 +38,10 @@ public class GameService {
 
         Game game = GameMapper.toEntity(createGameRequest);
 
-        Room room = findRoomService.findById(createGameRequest.getRoomId());
         UserModel creator = findUserService.findById(createGameRequest.getCreatorId());
         Coupon coupon = findCouponService.findById(createGameRequest.getCouponId());
 
         game.setCreator(creator);
-        game.setRoom(room);
         game.setCoupon(coupon);
 
         gameRepository.save(game);
