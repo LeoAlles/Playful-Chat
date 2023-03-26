@@ -7,6 +7,7 @@ import com.playful.chat.model.Room;
 public class RoomMapper {
     public static RoomResponse toResponse(Room room) {
         return RoomResponse.builder()
+                .id(room.getId())
                 .name(room.getName())
                 .creator(UserMapper.toResponse(room.getCreator()))
                 .dateCreated(room.getDateCreated().toString())
