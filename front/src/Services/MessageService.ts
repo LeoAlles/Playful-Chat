@@ -38,9 +38,10 @@ export default class MessageService{
   }
 
   public static async search(roomId: number) {
-    const response: messageResponse[] = (await axios.post(this.endpoint, roomId)).data
+    const response: messageResponse[] = (await axios.get(this.endpoint + `/${roomId}`)).data
 
-    return response.map(MessageMapper)
+    const messages = response.map(MessageMapper)
+    return messages
   }
 
 }
