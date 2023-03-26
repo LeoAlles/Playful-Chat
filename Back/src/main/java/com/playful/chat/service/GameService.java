@@ -2,6 +2,7 @@ package com.playful.chat.service;
 
 import com.playful.chat.controller.request.GameMessageRequest;
 import com.playful.chat.controller.request.CreateGameRequest;
+import com.playful.chat.controller.response.GameResponse;
 import com.playful.chat.mapper.GameMapper;
 import com.playful.chat.model.Coupon;
 import com.playful.chat.model.Game;
@@ -13,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class GameService {
@@ -74,4 +77,7 @@ public class GameService {
 
     }
 
+    public List<GameResponse> list() {
+        return gameRepository.findAll().stream().map(GameMapper::toResponse).collect(Collectors.toList());
+    }
 }

@@ -17,7 +17,7 @@ public class CouponMapper {
         return CouponResponse.builder()
                 .id(coupon.getId())
                 .code(coupon.getCode())
-                .owner(UserMapper.toResponse(coupon.getOwner()))
+                .owner(coupon.getOwner() == null ? null : UserMapper.toResponse(coupon.getOwner()))
                 .creator(UserMapper.toResponse(coupon.getCreator()))
                 .store(coupon.getStore())
                 .build();
