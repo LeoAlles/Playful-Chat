@@ -1,13 +1,13 @@
 package com.playful.chat.mapper;
 
 
-import com.playful.chat.controller.request.UserRequest;
+import com.playful.chat.controller.request.CreateUserRequest;
 import com.playful.chat.controller.response.UserResponse;
 import com.playful.chat.model.UserModel;
 
 public class UserMapper {
 
-    public static UserModel toEntity(UserRequest request) {
+    public static UserModel toEntity(CreateUserRequest request) {
         UserModel entity = new UserModel();
         entity.setName(request.getName());
         entity.setEmail(request.getEmail());

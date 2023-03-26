@@ -8,9 +8,8 @@ public class RoomMapper {
     public static RoomResponse toResponse(Room room) {
         return RoomResponse.builder()
                 .name(room.getName())
-                .creator(room.getCreator().getName())
-                .totalUsers(room.getTotalUsers())
-                .dateCreated(room.getDateCreated())
+                .creator(UserMapper.toResponse(room.getCreator()))
+                .dateCreated(room.getDateCreated().toString())
                 .build();
     }
 

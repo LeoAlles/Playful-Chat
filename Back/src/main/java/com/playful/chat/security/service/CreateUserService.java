@@ -1,7 +1,7 @@
 package com.playful.chat.security.service;
 
 
-import com.playful.chat.controller.request.UserRequest;
+import com.playful.chat.controller.request.CreateUserRequest;
 import com.playful.chat.controller.response.UserResponse;
 import com.playful.chat.model.UserModel;
 import com.playful.chat.repository.UserRepository;
@@ -12,9 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static com.playful.chat.mapper.UserMapper.toEntity;
 import static com.playful.chat.mapper.UserMapper.toResponse;
@@ -30,7 +27,7 @@ public class CreateUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserResponse create(UserRequest request) {
+    public UserResponse create(CreateUserRequest request) {
 
         if(userRepository.existsByEmail(request.getEmail())) {
             throw new ResponseStatusException(BAD_REQUEST, "Esse email não está disponível.");

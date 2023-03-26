@@ -30,4 +30,7 @@ public class Coupon {
     @Column(nullable = false)
     private LocalDateTime dateCreated;
 
+    @Column(nullable = false)
+    private String store;
+
 }

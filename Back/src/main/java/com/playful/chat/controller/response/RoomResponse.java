@@ -1,10 +1,12 @@
 package com.playful.chat.controller.response;
 
+import com.playful.chat.model.Message;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,10 +15,8 @@ public class RoomResponse {
 
     private String name;
 
-    private String creator;
+    private UserResponse creator;
 
-    private int totalUsers;
-
-    private LocalDateTime dateCreated;
+    private String dateCreated;
 
 }

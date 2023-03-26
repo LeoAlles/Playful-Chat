@@ -1,6 +1,6 @@
 package com.playful.chat.controller;
 
-import com.playful.chat.controller.request.GameRequest;
+import com.playful.chat.controller.request.CreateGameRequest;
 import com.playful.chat.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +20,8 @@ public class GameController {
 
 
     @PostMapping
-    public Long create(@Valid @RequestBody GameRequest gameRequest) {
-        return gameService.create(gameRequest);
+    public Long create(@Valid @RequestBody CreateGameRequest createGameRequest) {
+        return gameService.create(createGameRequest);
     }
 
 

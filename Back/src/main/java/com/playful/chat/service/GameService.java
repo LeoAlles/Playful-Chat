@@ -1,7 +1,7 @@
 package com.playful.chat.service;
 
 import com.playful.chat.controller.request.GameMessageRequest;
-import com.playful.chat.controller.request.GameRequest;
+import com.playful.chat.controller.request.CreateGameRequest;
 import com.playful.chat.mapper.GameMapper;
 import com.playful.chat.model.Coupon;
 import com.playful.chat.model.Game;
@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Service
@@ -32,13 +31,13 @@ public class GameService {
     private FindCouponService findCouponService;
 
 
-    public Long create(GameRequest gameRequest) {
+    public Long create(CreateGameRequest createGameRequest) {
 
-        Game game = GameMapper.toEntity(gameRequest);
+        Game game = GameMapper.toEntity(createGameRequest);
 
-        Room room = findRoomService.findById(gameRequest.getRoomId());
-        UserModel creator = findUserService.findById(gameRequest.getCreatorId());
-        Coupon coupon = findCouponService.findById(gameRequest.getCouponId());
+        Room room = findRoomService.findById(createGameRequest.getRoomId());
+        UserModel creator = findUserService.findById(createGameRequest.getCreatorId());
+        Coupon coupon = findCouponService.findById(createGameRequest.getCouponId());
 
         game.setCreator(creator);
         game.setRoom(room);

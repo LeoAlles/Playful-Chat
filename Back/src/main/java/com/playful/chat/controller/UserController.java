@@ -1,9 +1,8 @@
 package com.playful.chat.controller;
 
 
-import com.playful.chat.controller.request.UserRequest;
+import com.playful.chat.controller.request.CreateUserRequest;
 import com.playful.chat.controller.response.UserResponse;
-import com.playful.chat.security.service.AuthenticatedUserService;
 import com.playful.chat.security.service.CreateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +16,7 @@ public class UserController {
     private CreateUserService createUserService;
 
     @PostMapping
-    public UserResponse create(@RequestBody UserRequest request) {
+    public UserResponse create(@RequestBody CreateUserRequest request) {
         return createUserService.create(request);
     }
 

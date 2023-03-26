@@ -1,13 +1,13 @@
 package com.playful.chat.mapper;
 
-import com.playful.chat.controller.request.GameRequest;
+import com.playful.chat.controller.request.CreateGameRequest;
 import com.playful.chat.model.Game;
 
 public class GameMapper {
-    public static Game toEntity(GameRequest gameRequest) {
+    public static Game toEntity(CreateGameRequest createGameRequest) {
         return Game.builder()
-                .answer(gameRequest.getAnswer())
-                .question(gameRequest.getQuestion())
+                .answer(createGameRequest.getAnswer())
+                .question(createGameRequest.getQuestion())
                 .build();
     }
 }

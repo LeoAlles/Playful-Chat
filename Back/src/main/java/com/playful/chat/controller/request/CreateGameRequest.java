@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Builder
-public class GameRequest {
+public class CreateGameRequest {
 
     @NotNull
     private Long creatorId;

@@ -1,6 +1,9 @@
 package com.playful.chat.service;
 
+import com.playful.chat.controller.request.CreateCouponRequest;
 import com.playful.chat.controller.request.DeliverCouponRequest;
+import com.playful.chat.controller.response.CouponResponse;
+import com.playful.chat.mapper.CouponMapper;
 import com.playful.chat.model.Coupon;
 import com.playful.chat.model.UserModel;
 import com.playful.chat.repository.CouponRepository;
@@ -10,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class CouponService {
@@ -21,14 +26,12 @@ public class CouponService {
     @Autowired
     private CouponRepository couponRepository;
 
-    public Long create(Long creatorId) {
+    public Long create(CreateCouponRequest createCouponRequest) {
 
-        UserModel creator = findUserService.findById(creatorId);
+        UserModel creator = findUserService.findById(createCouponRequest.getCreatorId());
 
-        Coupon coupon = new Coupon();
-        Random random = new Random();
+        Coupon coupon = CouponMapper.toEntity(createCouponRequest);
 
-        coupon.setCode(String.format("%04d", random.nextInt(10000)));
         coupon.setCreator(creator);
         coupon.setDateCreated(LocalDateTime.now());
 
@@ -49,5 +52,9 @@ public class CouponService {
         couponRepository.save(coupon);
 
         return coupon.getCode();
+    }
+
+    public List<CouponResponse> list() {
+        return couponRepository.findAll().stream().map(CouponMapper::toResponse).collect(Collectors.toList());
     }
 }

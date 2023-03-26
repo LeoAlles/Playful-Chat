@@ -17,9 +17,9 @@ public class MessageResponse {
 
     private String text;
 
-    private LocalDateTime sendAt;
+    private String timestamp;
 
-    private RoomResponse room;
+    private Long roomId;
 
     private UserResponse sender;
 

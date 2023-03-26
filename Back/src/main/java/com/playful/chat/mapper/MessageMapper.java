@@ -9,9 +9,9 @@ public class MessageMapper {
         return MessageResponse.builder()
                 .id(message.getId())
                 .text(message.getText())
-                .sendAt(message.getSendAt())
+                .timestamp(message.getSendAt().toString())
                 .sender(UserMapper.toResponse(message.getSender()))
-                .room(RoomMapper.toResponse(message.getRoom()))
+                .roomId(message.getRoom().getId())
                 .build();
     }
 }

@@ -3,6 +3,7 @@ package com.playful.chat.service;
 import com.playful.chat.controller.request.CreateRoomRequest;
 import com.playful.chat.controller.response.RoomResponse;
 import com.playful.chat.mapper.RoomMapper;
+import com.playful.chat.model.Message;
 import com.playful.chat.model.Room;
 import com.playful.chat.model.UserModel;
 import com.playful.chat.repository.RoomRepository;
