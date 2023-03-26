@@ -3,18 +3,21 @@ import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 import RoomService from "../../../Services/RoomService";
 import Room from "../../../Entities/Room";
-
+import LoginService from "../../../Services/LoginService";
+import MessagePrompt from './MessagePrompt'
 
 const RoomDisplay = () => {
-    const {id} = useParams()
-    const [room, setRoom] = useState<Room>()
+  const {id} = useParams()
+  const [room, setRoom] = useState<Room>()
 
-    useEffect(()=>{
-        const fetchRoom = async ()=>{
-            const room = await RoomService.get(Number(id))
-            setRoom(room)
-        }
-    },[])
+  const currentUser = LoginService.getLogged()
+  
+  useEffect(()=>{
+      const fetchRoom = async ()=>{
+          const room = await RoomService.get(Number(id))
+          setRoom(room)
+      }
+  },[])
 
   return (
     <RoomWrapper>
@@ -30,6 +33,7 @@ const RoomDisplay = () => {
           ))}
         </MessageWrapper>
       </ChatWrapper>
+      <MessagePrompt currentUser={currentUser!} roomId={room!.id}/>
     </RoomWrapper>
   );
 };
