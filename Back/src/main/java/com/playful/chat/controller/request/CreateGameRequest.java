@@ -18,9 +18,6 @@ public class CreateGameRequest {
     private Long couponId;
 
     @NotNull
-    private Long roomId;
-
-    @NotNull
     private String question;
 
     @NotNull
