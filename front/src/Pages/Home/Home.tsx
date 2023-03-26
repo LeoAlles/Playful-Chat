@@ -4,7 +4,7 @@ import { HomeContainer, LoginCard, Form, Label, Submit, Input} from "./style"
 import styled from "styled-components";
 import NavButton from "../../Components/NavButton/NavButton";
 
-export default function Home(){
+export default function     Home(){
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 

@@ -10,7 +10,7 @@ import CreateGame from './Pages/Games/CreateGame';
 import GamesSearch from './Pages/Games/SearchGames';
 import CreateUser from './Pages/Home/CreateUser'
 import CreateRoom from './Pages/Rooms/Room/CreateRoom';
-import Chat from './Pages/Chat/Chat';
+import Chat from './Pages/Rooms/Room/Chat';
 function App() {
   return (
     <>

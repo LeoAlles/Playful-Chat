@@ -14,7 +14,6 @@ export type messageResponse = {
 
 export type messageCreate = {
   text: string
-  timestamp: Moment
   senderId: number
   roomId: number
 }
@@ -32,7 +31,7 @@ export const MessageMapper = (response: messageResponse): Message => {
 }
 
 export default class MessageService{
-  private static endpoint = 'http://localhost:8080/api/message'
+  private static endpoint = 'http://localhost:8080/api/chat'
 
   public static async create(message: messageCreate) {
     const response: messageCreate = (await axios.post(this.endpoint, message)).data

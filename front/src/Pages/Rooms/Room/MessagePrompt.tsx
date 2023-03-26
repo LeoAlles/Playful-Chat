@@ -18,7 +18,6 @@ function CreateMessageForm({currentUser, roomId}: props){
         text: text,
         roomId: roomId,
         senderId: currentUser.id,
-        timestamp: moment()
     })
   };
 
