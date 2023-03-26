@@ -5,14 +5,6 @@ import SelectUser from "../../Components/Selects/SelectUser/SelectUser";
 import CouponService from "../../Services/CouponService";
 import LoginService from "../../Services/LoginService";
 
-const FormWrapper = styled.div``;
-
-const Label = styled.label``;
-
-const Input = styled.input``;
-
-const Button = styled.button``;
-
 function CouponForm() {
   const [store, setStore] = useState("");
   const [code, setCode] = useState("");
@@ -66,3 +58,11 @@ function CouponForm() {
 }
 
 export default CouponForm;
+
+const FormWrapper = styled.div``;
+
+const Label = styled.label``;
+
+const Input = styled.input``;
+
+const Button = styled.button``;

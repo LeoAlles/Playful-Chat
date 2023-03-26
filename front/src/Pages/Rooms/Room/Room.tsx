@@ -18,16 +18,18 @@ const RoomDisplay = () => {
 
   return (
     <RoomWrapper>
-      <RoomTitle>{room?.name}</RoomTitle>
-      <CreatorName>Created by: {room?.creator.name}</CreatorName>
-      <MessageWrapper>
-        {room?.messages.map((message) => (
-          <div key={message.id}>
-            <MessageText>{message.text}</MessageText>
-            <CreatorName>{message.sender.name}</CreatorName>
-          </div>
-        ))}
-      </MessageWrapper>
+      <ChatWrapper>
+        <RoomTitle>{room?.name}</RoomTitle>
+        <CreatorName>Created by: {room?.creator.name}</CreatorName>
+        <MessageWrapper>
+          {room?.messages.map((message) => (
+            <div key={message.id}>
+              <CreatorName>{message.sender.name}</CreatorName>
+              <MessageText>{message.text}</MessageText>
+            </div>
+          ))}
+        </MessageWrapper>
+      </ChatWrapper>
     </RoomWrapper>
   );
 };
@@ -35,21 +37,19 @@ const RoomDisplay = () => {
 export default RoomDisplay;
 
 const RoomWrapper = styled.div`
-  /* your room styles here */
 `;
 
 const RoomTitle = styled.h2`
-  /* your room title styles here */
 `;
 
 const CreatorName = styled.p`
-  /* your creator name styles here */
 `;
 
 const MessageWrapper = styled.div`
-  /* your message wrapper styles here */
 `;
 
 const MessageText = styled.p`
-  /* your message text styles here */
+`;
+
+const ChatWrapper = styled.p`
 `;

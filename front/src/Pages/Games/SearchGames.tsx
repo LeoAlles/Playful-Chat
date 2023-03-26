@@ -4,22 +4,6 @@ import GameService from '../../Services/GameService';
 import Game from "../../Entities/Game"
 import NavButton from '../../Components/NavButton/NavButton';
 
-const GameListContainer = styled.div`
-`;
-
-const GameListItem = styled.div`
-`;
-
-const Title = styled.h2`
-`;
-
-const TopContainer = styled.div`
-  display:flex;
-  margin: 1.5em;
-  border-bottom: 1px solid #555;
-  justify-content: space-around;
-`;
-
 const GamesSearch = () => {
   const [games, setGames] = useState<Game[]>([]);
 
@@ -53,3 +37,20 @@ const GamesSearch = () => {
 };
 
 export default GamesSearch
+
+
+const GameListContainer = styled.div`
+`;
+
+const GameListItem = styled.div`
+`;
+
+const Title = styled.h2`
+`;
+
+const TopContainer = styled.div`
+  display:flex;
+  margin: 1.5em;
+  border-bottom: 1px solid #555;
+  justify-content: space-around;
+`;

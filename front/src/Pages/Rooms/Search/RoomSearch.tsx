@@ -7,6 +7,7 @@ import RoomService from "../../../Services/RoomService"
 import styled
  from "styled-components"
 import NavButton from "../../../Components/NavButton/NavButton"
+
 export default function RoomSearch(){
     const [rooms, setRooms] = useState<Room[]>([])
 
