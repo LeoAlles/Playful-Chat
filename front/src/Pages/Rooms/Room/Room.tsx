@@ -35,16 +35,6 @@ const RoomDisplay = () => {
   );
 };
 
-function component(room: Room){
-  return(
-    <RoomWrapper>
-      <RoomTitle>{room?.name}</RoomTitle>
-      <CreatorName>Created by: {room?.creator.name}</CreatorName>
-      <Chat roomId={room?.id}/>
-    </RoomWrapper>
-  )
-}
-
 export default RoomDisplay;
 
 const RoomWrapper = styled.div`
