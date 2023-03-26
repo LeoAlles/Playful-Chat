@@ -17,15 +17,17 @@ export default class LoginService{
 
     public static async login(userName: string, passWord: string){
         
-        const response = await axios.post(this.endpoint, {}, {
+        const response = (await axios.post(this.endpoint, {}, {
             auth: {
                 username: userName,
                 password: passWord
             }
-        })
+        })).data
+
+        sessionStorage.setItem("logged", "true")
+        sessionStorage.setItem("user", JSON.stringify(response))
 
         console.log(response)
-
     }
 
     public static getLogged(): User | undefined{

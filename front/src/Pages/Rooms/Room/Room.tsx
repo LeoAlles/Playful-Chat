@@ -27,7 +27,7 @@ const RoomDisplay = () => {
         <MessageWrapper>
           {room?.messages.map((message) => (
             <div key={message.id}>
-              <CreatorName>{message.sender.name}</CreatorName>
+              <CreatorName>{message.sender?.name}</CreatorName>
               <MessageText>{message.text}</MessageText>
             </div>
           ))}

@@ -42,9 +42,9 @@ export default class RoomService{
     private static endpoint = 'http://localhost:8080/api/rooms'
 
     public static async searchAll(){
-        const response = await axios.get(this.endpoint, { withCredentials: true })
+        const response: RoomResponse[] = (await axios.get(this.endpoint)).data
 
-        return response.data.map(RoomMapper)
+        return response.map(RoomMapper)
     }
 
     public static async get(roomId: number){
@@ -54,7 +54,7 @@ export default class RoomService{
     }
 
     public static async create(room : RoomCreatePayload){
-        const response = await axios.post(this.endpoint, room)
+        const response = await axios.post(this.endpoint + "/create", room)
 
         return RoomMapper(response.data)
     }

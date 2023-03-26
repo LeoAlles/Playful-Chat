@@ -42,32 +42,6 @@ export default class CouponService {
     return response.data.map(CouponMapper)
   }
 
-  // public static searchAll(): Promise<Coupon[]> {
-  //   const user = new User(
-  //     1, // id
-  //     "John Doe", // name
-  //     "johndoe@example.com", // email
-  //     "password123", // password
-  //     moment("1990-01-01") // birthDate
-  //   );
-
-  //   return new Promise((resolve) => {
-  //     const user = new User(
-  //       1, // id
-  //       "John Doe", // name
-  //       "johndoe@example.com", // email
-  //       "password123", // password
-  //       moment("1990-01-01") // birthDate
-  //     );
-  //     const coupons: Coupon[] = [
-  //       new Coupon(1, "Store A", "ABC123", user, null),
-  //       new Coupon(2, "Store B", "DEF456", user, null),
-  //       new Coupon(3, "Store C", "GHI789", user, null),
-  //     ];
-  //     resolve(coupons);
-  //   });
-  // }
-
   public static async create(coupon: CouponCreatePayload) {
     const response = await axios.post(this.endpoint, coupon)
 
