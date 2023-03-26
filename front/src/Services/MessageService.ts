@@ -8,7 +8,7 @@ export type messageResponse = {
   id: number
   text: string
   timestamp: Moment
-  sender: UserResponse
+  sender: UserResponse | null
   roomId: number
 }
 
@@ -25,7 +25,7 @@ export const MessageMapper = (response: messageResponse): Message => {
   return new Message(
     response.id,
     response.text,
-    UserMapper(response.sender),
+    response.sender ? UserMapper(response.sender) : undefined,
     timestamp,
     response.roomId
   )

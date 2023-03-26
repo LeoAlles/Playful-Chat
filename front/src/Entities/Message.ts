@@ -5,14 +5,14 @@ import Room from './Room'
 class Message {
     id: number
     text: string
-    sender: User
+    sender: User | undefined
     timestamp: Moment
     roomId: number
 
     constructor( 
         id: number,
         text: string,
-        sender: User,
+        sender: User | undefined,
         timestamp: Moment,
         roomId: number
     ){
