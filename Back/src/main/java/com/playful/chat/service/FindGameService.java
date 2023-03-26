@@ -25,11 +25,6 @@ public class FindGameService {
 
     public List<Game> findAllByRoomId(Long roomId) {
 
-        List<Game> games = gameRepository.findAllByRoomId(roomId);
-        if(games.isEmpty()) {
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, "Jogo não encontrado");
-        }
-
-        return games;
+        return gameRepository.findAllByRoomId(roomId);
     }
 }

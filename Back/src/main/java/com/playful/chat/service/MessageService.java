@@ -78,9 +78,6 @@ public class MessageService {
         }else {
             message.setSender(sender);
 
-
-
-
             gameService.checkAnswer(createMessageRequest);
         }
 
