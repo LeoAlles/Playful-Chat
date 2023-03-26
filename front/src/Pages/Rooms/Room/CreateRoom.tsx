@@ -5,9 +5,12 @@ import moment from "moment";
 import styled from "styled-components";
 import LoginService from "../../../Services/LoginService";
 import RoomService from "../../../Services/RoomService";
+import Toaster from "../../../Components/Toaster/Toaster";
 
 function CreateRoom() {
   const [roomName, setRoomName] = useState("");
+
+  const [message, setMessage] = useState("");
 
   const handleRoomSubmit = async (e: any) => {
     e.preventDefault();
@@ -16,23 +19,35 @@ function CreateRoom() {
     if(currentUser == undefined)
         return
 
-    await RoomService.create({
-        name: roomName,
-        creatorId: currentUser.id,
-        dateCreated: moment()
-    })
+    try{
+      await RoomService.create({
+          name: roomName,
+          creatorId: currentUser.id,
+          dateCreated: moment()
+      })
+      setMessage("Creation Successful")
+
+      setTimeout(()=>{
+        window.location.href = "/rooms/search"
+      },1300)
+    }catch{
+      setMessage("Creation Failed")
+    }
   };
 
   return (
-    <Form onSubmit={handleRoomSubmit}>
-      <Input
-        type="text"
-        placeholder="Room Name"
-        value={roomName}
-        onChange={(e) => setRoomName(e.target.value)}
-      />
-      <Button type="submit">Create Room</Button>
-    </Form>
+    <>
+      <Toaster message={message}></Toaster>
+      <Form onSubmit={handleRoomSubmit}>
+        <Input
+          type="text"
+          placeholder="Room Name"
+          value={roomName}
+          onChange={(e) => setRoomName(e.target.value)}
+        />
+        <Button type="submit">Create Room</Button>
+      </Form>
+    </>
   );
 }
 

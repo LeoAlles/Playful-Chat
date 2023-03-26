@@ -11,13 +11,14 @@ import GamesSearch from './Pages/Games/SearchGames';
 import CreateUser from './Pages/Home/CreateUser'
 import CreateRoom from './Pages/Rooms/Room/CreateRoom';
 import Chat from './Pages/Rooms/Room/Chat';
+
 function App() {
   return (
     <>
       <Navbar/>
         <Routes>
           <Route path="/" element={ <Chat/>}></Route>
-          <Route path="/rooms/search" element={ <RoomSearch/>}></Route>
+          <Route path="/rooms/search" element={<RoomSearch/>}></Route>
           <Route path="/rooms/:id" element={<Room/>}></Route>
           <Route path="/coupons/create" element={<CouponForm/>}></Route>
           <Route path="/coupons/search" element={<CouponSearch/>}></Route>

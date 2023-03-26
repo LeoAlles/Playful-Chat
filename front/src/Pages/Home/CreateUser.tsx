@@ -3,6 +3,7 @@ import { useState } from "react";
 import User from "../../Entities/User";
 import moment from "moment";
 import UserService from "../../Services/UserService";
+import Toaster from "../../Components/Toaster/Toaster";
 
 const UserForm = () => {
   const [name, setName] = useState("");
@@ -10,18 +11,29 @@ const UserForm = () => {
   const [password, setPassword] = useState("");
   const [birthDate, setBirthDate] = useState("");
 
+  const [message, setMessage] = useState("");
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await UserService.create({
-        name: name,
-        email: email,
-        password: password,
-        birthdate: moment(birthDate)
-    })
+    try{
+      await UserService.create({
+          name: name,
+          email: email,
+          password: password,
+          birthdate: moment(birthDate)
+      })
+      setMessage("Creation Successful")
+      setTimeout(()=>{
+        window.location.href = "/"
+      },1300)
+    }catch{
+      setMessage("Creation Failed")
+    }
   };
 
   return (
     <FormWrapper onSubmit={handleSubmit}>
+      <Toaster message={message}></Toaster>
       <InputWrapper>
         <Label htmlFor="name">Name:</Label>
         <Input

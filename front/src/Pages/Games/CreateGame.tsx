@@ -5,11 +5,14 @@ import GameService from "../../Services/GameService"
 import SelectCoupon from '../../Components/Selects/SelectCoupon/SelectCoupon'
 import Coupon from '../../Entities/Coupon';
 import LoginService from '../../Services/LoginService';
+import Toaster from '../../Components/Toaster/Toaster';
 
 function CreateGame() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [coupon, setCoupon] = useState<Coupon | null>(null);
+
+  const [message, setMessage] = useState("");
 
   const handleCouponChange = (selectedCoupon: Coupon | null) => {
     setCoupon(selectedCoupon);
@@ -18,32 +21,45 @@ function CreateGame() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    await GameService.create({
+    try{
+      await GameService.create({
         creatorId: LoginService.getLogged()?.id || 0,
         couponId: coupon?.id || 0,
         question: question || "",
         answer: answer || ""
     });
+  
+      setMessage("Creation Successful")
+
+      setTimeout(()=>{
+        window.location.href = "/games/search"
+      },1300)
+    }catch{
+      setMessage("Creation Failed")
+    }
   };
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
-        <Label>
-          Question
-          <Input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
-        </Label>
-        <Label>
-          Answer
-          <Input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} />
-        </Label>
-        <Label>
-          Coupon
-          <SelectCoupon changeSelectedCoupon={handleCouponChange} />
-        </Label>
-        <Button type="submit">Create Game</Button>
-      </Form>
-    </Container>
+    <>
+      <Toaster message={message}></Toaster>
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <Label>
+            Question
+            <Input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
+          </Label>
+          <Label>
+            Answer
+            <Input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} />
+          </Label>
+          <Label>
+            Coupon
+            <SelectCoupon changeSelectedCoupon={handleCouponChange} />
+          </Label>
+          <Button type="submit">Create Game</Button>
+        </Form>
+      </Container>
+    </>
   );
 };
 

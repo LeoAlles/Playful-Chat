@@ -53,14 +53,10 @@ export default class RoomService{
     }
 
     public static async create(room : RoomCreatePayload){
-        const response = await axios.post(this.endpoint + "/create", room)
-
-        return RoomMapper(response.data)
+        await axios.post(this.endpoint + "/create", room)
     }
 
     public static async delete(room : RoomDeletePayload){
-        const response = await axios.delete(this.endpoint + `/${room.id}`)
-
-        return RoomMapper(response.data)
+        await axios.delete(this.endpoint + `/${room.id}`)
     }
 }
