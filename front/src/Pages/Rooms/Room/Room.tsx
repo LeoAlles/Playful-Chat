@@ -25,7 +25,13 @@ const RoomDisplay = () => {
   },[])
 
   return (
-    room ? component(room) : <></>
+    room ?
+      <RoomWrapper>
+        <RoomTitle>{room?.name}</RoomTitle>
+        <CreatorName>Created by: {room?.creator.name}</CreatorName>
+        <Chat roomId={room?.id}/>
+      </RoomWrapper> 
+      : <></>
   );
 };
 
