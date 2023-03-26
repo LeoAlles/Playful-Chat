@@ -29,5 +29,10 @@ public class GameController {
     }
 
 
+    @GetMapping("/room/{roomId}")
+    public List<GameResponse> listByRoom(@PathVariable Long roomId) {
+        return gameService.listByRoom(roomId);
+    }
+
 
 }

@@ -40,9 +40,9 @@ public class CouponService {
         return coupon.getId();
     }
 
-    public String deliver(Long couponId, DeliverCouponRequest deliverCouponRequest) {
+    public void deliver(Long couponId, Long ownerId) {
 
-        UserModel owner = findUserService.findById(deliverCouponRequest.getOwnerId());
+        UserModel owner = findUserService.findById(ownerId);
 
         Coupon coupon = couponRepository.findById(couponId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cupom não encontrado")
@@ -51,7 +51,10 @@ public class CouponService {
         coupon.setOwner(owner);
         couponRepository.save(coupon);
 
-        return coupon.getCode();
+    }
+
+    public List<CouponResponse> findByUser(Long userId) {
+        return couponRepository.findAllByOwnerId(userId).stream().map(CouponMapper::toResponse).collect(Collectors.toList());
     }
 
     public List<CouponResponse> list() {

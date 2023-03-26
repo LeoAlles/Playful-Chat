@@ -37,7 +37,7 @@ public class Game {
 
     @Column(nullable = false)
     @Builder.Default
-    private boolean active = true;
+    private boolean active = false;
 
     @Column(nullable = false)
     private String answer;

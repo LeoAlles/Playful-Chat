@@ -1,5 +1,6 @@
 package com.playful.chat.service;
 
+import com.playful.chat.controller.request.CreateMessageRequest;
 import com.playful.chat.controller.request.GameMessageRequest;
 import com.playful.chat.controller.request.CreateGameRequest;
 import com.playful.chat.controller.response.GameResponse;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,10 +30,16 @@ public class GameService {
     private FindRoomService findRoomService;
 
     @Autowired
+    private CouponService couponService;
+
+    @Autowired
     private FindUserService findUserService;
 
     @Autowired
     private FindCouponService findCouponService;
+
+    @Autowired
+    private FindGameService findGameService;
 
 
     public Long create(CreateGameRequest createGameRequest) {
@@ -50,32 +58,46 @@ public class GameService {
     }
 
 
-    public boolean checkAnswer(GameMessageRequest gameMessageRequest) {
+    @Transactional
+    public boolean checkAnswer(CreateMessageRequest createMessageRequest) {
 
-        Game game = gameRepository.findById(gameMessageRequest.getGameId()).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Jogo não encontrado")
-        );
+        createMessageRequest.setText(createMessageRequest.getText().replaceAll(" ", ""));
+
+        List<Game> games = findGameService.findAllByRoomId(createMessageRequest.getRoomId());
+
+        Game game = games.stream().filter(game1 -> game1.isActive()).collect(Collectors.toList()).get(0);
+
+        if(Objects.equals(createMessageRequest.getSenderId(), game.getCreator().getId())) {
+            return false;
+        }
 
         if(!game.isActive()) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Jogo não ativo");
         }
 
-        if(!Objects.equals(game.getAnswer().toLowerCase(), gameMessageRequest.getAnswer().toLowerCase())) {
-            throw new ResponseStatusException(HttpStatus.CONTINUE, "Resposta errada");
+        if(!Objects.equals(game.getAnswer().toLowerCase(), createMessageRequest.getText().toLowerCase())) {
+            return false;
         }
 
-        UserModel winner = findUserService.findById(gameMessageRequest.getSenderId());
+        UserModel winner = findUserService.findById(createMessageRequest.getSenderId());
 
         game.setWinner(winner);
         game.setActive(false);
 
         gameRepository.save(game);
 
+        couponService.deliver(game.getCoupon().getId(), createMessageRequest.getSenderId());
+
         return true;
 
     }
 
+
     public List<GameResponse> list() {
         return gameRepository.findAll().stream().map(GameMapper::toResponse).collect(Collectors.toList());
+    }
+
+    public List<GameResponse> listByRoom(Long roomId) {
+        return gameRepository.findAllByRoomId(roomId).stream().map(GameMapper::toResponse).collect(Collectors.toList());
     }
 }

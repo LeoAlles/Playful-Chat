@@ -11,7 +11,7 @@ public class MessageMapper {
                 .id(message.getId())
                 .text(message.getText())
                 .timestamp(message.getSendAt().toString())
-                .sender(UserMapper.toResponse(message.getSender()))
+                .sender( message.getSender() == null ? null : UserMapper.toResponse(message.getSender()))
                 .roomId(message.getRoom().getId())
                 .build();
     }

@@ -27,10 +27,9 @@ public class CouponController {
         return couponService.list();
     }
 
-
-    @PutMapping("/deliver/{couponId}")
-    public String deliverCoupon(@PathVariable Long couponId, @Valid @RequestBody DeliverCouponRequest deliverCouponRequest) {
-        return couponService.deliver(couponId, deliverCouponRequest);
+    @GetMapping("/{userId}")
+    public List<CouponResponse> findByUser(@PathVariable Long userId) {
+        return couponService.findByUser(userId);
     }
 
 }
