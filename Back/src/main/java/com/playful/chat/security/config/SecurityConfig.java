@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors()
                 .and()
-                .authorizeRequests().antMatchers("/api/**").hasRole("USER")
+                .authorizeRequests().antMatchers("/api/**").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/register", "/login").permitAll()
                 .anyRequest().authenticated()
