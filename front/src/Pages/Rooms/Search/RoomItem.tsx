@@ -13,7 +13,7 @@ export default function({room}:props){
     }
 
     return(
-        <ItemContainter>
+        <ItemContainter onClick={() => {window.location.href = `rooms/${room.id}`}}>
             <FieldContainer>
                 <Name>Room Name</Name>
                 <Value>{room.name}</Value>
