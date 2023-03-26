@@ -44,18 +44,18 @@ function CreateGame() {
       <Toaster message={message}></Toaster>
       <Container>
         <Form onSubmit={handleSubmit}>
-          <Label>
-            Question
+          <InputWrapper>
+            <Label>Question</Label>
             <Input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
-          </Label>
-          <Label>
-            Answer
+          </InputWrapper>
+          <InputWrapper>
+            <Label>Answer</Label>
             <Input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} />
-          </Label>
-          <Label>
-            Coupon
+          </InputWrapper>
+          <InputWrapper>
+            <Label>Coupon</Label>
             <SelectCoupon changeSelectedCoupon={handleCouponChange} />
-          </Label>
+          </InputWrapper>
           <Button type="submit">Create Game</Button>
         </Form>
       </Container>
@@ -65,12 +65,61 @@ function CreateGame() {
 
 export default CreateGame;
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 75%;
+  max-width: 50em;
+  margin: auto;
+  margin-top: 3em;
+  padding: 2em;
+  background-color: #f5f5f5;
+  border-radius: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
 
-const Form = styled.form``;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 25% 0 25%;
+  min-width: 15em;
 
-const Label = styled.label``;
+  > * {
+    width: 100%;
+  }
+`;
 
-const Input = styled.input``;
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.3em;
+`;
 
-const Button = styled.button``;
+const Label = styled.label`
+  font-size: 1em;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+`;
+
+const Input = styled.input`
+  padding: 1em;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+`;
+
+const Button = styled.button`
+    width: min-content;
+    padding: 0.7em;
+    background-color: #E49393;
+    border: 0;
+    box-shadow: 5px 5px 0px #ccc;
+    font-weight: bold;
+    margin-left: auto;
+    font-size: 1em;
+
+    :hover{
+        background-color: #C47373;
+        box-shadow: none;
+    }
+`;

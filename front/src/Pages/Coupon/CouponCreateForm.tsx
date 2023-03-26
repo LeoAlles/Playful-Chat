@@ -41,9 +41,9 @@ function CouponForm() {
   return (
     <>
       <Toaster message={message}></Toaster>
-      <FormWrapper>
-        <form onSubmit={handleSubmit}>
-          <div>
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <InputWrapper>
             <Label htmlFor="store">Store:</Label>
             <Input
               type="text"
@@ -51,8 +51,8 @@ function CouponForm() {
               value={store}
               onChange={(event) => setStore(event.target.value)}
             />
-          </div>
-          <div>
+          </InputWrapper>
+          <InputWrapper>
             <Label htmlFor="code">Code:</Label>
             <Input
               type="text"
@@ -60,20 +60,71 @@ function CouponForm() {
               value={code}
               onChange={(event) => setCode(event.target.value)}
             />
-          </div>
+          </InputWrapper>
           <Button type="submit">Create Coupon</Button>
-        </form>
-      </FormWrapper>
+        </Form>
+      </Container>
     </>
   );
 }
 
 export default CouponForm;
 
-const FormWrapper = styled.div``;
+const Container = styled.div`
+  width: 75%;
+  max-width: 50em;
+  margin: auto;
+  margin-top: 3em;
+  padding: 2em;
+  background-color: #f5f5f5;
+  border-radius: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
 
-const Label = styled.label``;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 25% 0 25%;
+  min-width: 15em;
 
-const Input = styled.input``;
+  > * {
+    width: 100%;
+  }
+`;
 
-const Button = styled.button``;
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.3em;
+`;
+
+const Label = styled.label`
+  font-size: 1em;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+`;
+
+const Input = styled.input`
+  padding: 1em;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+`;
+
+const Button = styled.button`
+    width: min-content;
+    padding: 0.7em;
+    background-color: #E49393;
+    border: 0;
+    box-shadow: 5px 5px 0px #ccc;
+    font-weight: bold;
+    margin-left: auto;
+    font-size: 1em;
+
+    :hover{
+        background-color: #C47373;
+        box-shadow: none;
+    }
+`;

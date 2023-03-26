@@ -1,20 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledButton = styled.button`
-  background-color: #008cba;
-  color: white;
-  padding: 1em;
-  border: none;
-  border-radius: 5px;
-  margin: 1em;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #005f81;
-  }
-`;
-
 type NavButtonProps = {
   link: string;
   children: string;
@@ -29,3 +15,36 @@ const NavButton: React.FC<NavButtonProps> = ({ link, children }) => {
 };
 
 export default NavButton;
+
+const StyledButton = styled.button`
+  width: fit-content;
+  padding: 0.5em;
+  background-color: #E49393;
+  border: 0;
+  box-shadow: 5px 5px 0px #ccc;
+  margin: 0.5em;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 5px;
+  
+  :hover{
+      background-color: #C47373;
+      box-shadow: none;
+  }
+`;
+
+const Button = styled.button`
+    width: fit-content;
+    padding: 0.7em;
+    background-color: #E49393;
+    border: 0;
+    box-shadow: 5px 5px 0px #ccc;
+    font-weight: bold;
+    margin-left: auto;
+    font-size: 1em;
+
+    :hover{
+        background-color: #C47373;
+        box-shadow: none;
+    }
+`;

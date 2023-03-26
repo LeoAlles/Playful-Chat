@@ -26,12 +26,13 @@ export const Label = styled.label`
 
 export const Submit = styled.input`
     width: min-content;
-    padding: 0.7em;
+    padding: 0.3em;
     background-color: #E49393;
     border: 0;
     margin-left: auto;
     box-shadow: 5px 5px 0px #ccc;
     font-weight: bold;
+    border-radius: 5px;
 
     :hover{
         background-color: #E49393;
