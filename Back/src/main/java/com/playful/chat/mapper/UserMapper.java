@@ -11,6 +11,7 @@ public class UserMapper {
         UserModel entity = new UserModel();
         entity.setName(request.getName());
         entity.setEmail(request.getEmail());
+        entity.setBirthdate(request.getBirthdate());
         return entity;
     }
 

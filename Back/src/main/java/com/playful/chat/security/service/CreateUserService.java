@@ -38,13 +38,9 @@ public class CreateUserService {
 
         UserModel userModel = toEntity(request);
 
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-        LocalDate birthDate = LocalDate.parse(request.getBirthDate(), parser);
-
         userModel.setPassword(getEncryptedPassword(request.getPassword()));
         userModel.addAuthority(getDefaultAuthority());
         userModel.setActive(true);
-        userModel.setBirthdate(birthDate);
 
         userRepository.save(userModel);
 

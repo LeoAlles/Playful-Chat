@@ -13,21 +13,19 @@ export type loginResponse = {
 }
 
 export default class LoginService{
-    private static endpoint = 'http://localhost:8080/api/login'
+    private static endpoint = 'http://localhost:3000/login'
 
-    public static async login(userName: string, password: string){
-        const loginPayload = {
-            userName: userName,
-            password: password
-        }
-        const response = (await axios.get<loginResponse>(this.endpoint, {params: loginPayload})).data
+    public static async login(userName: string, passWord: string){
+        
+        const response = await axios.post(this.endpoint, {}, {
+            auth: {
+                username: userName,
+                password: passWord
+            }
+        })
 
-        if(response.logged == true){
-            sessionStorage.setItem("logged", "true");
-            sessionStorage.setItem("user",JSON.stringify(response.user));
-        }
+        console.log(response)
 
-        return response.logged
     }
 
     public static getLogged(): User | undefined{

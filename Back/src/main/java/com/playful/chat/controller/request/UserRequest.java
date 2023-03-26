@@ -26,5 +26,5 @@ public class UserRequest {
     @Length(max = 128)
     private String password;
 
-    private String birthDate;
+    private String birthdate;
 }

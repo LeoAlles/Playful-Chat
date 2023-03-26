@@ -31,7 +31,7 @@ export const UserMapper = (response: UserResponse): User => {
 }
 
 export default class UserService {
-  private static endpoint = 'http://localhost:8080/api/users'
+  private static endpoint = 'http://localhost:3000'
 
   public static async searchAll() {
     const response = await axios.get(this.endpoint)
@@ -40,7 +40,10 @@ export default class UserService {
   }
 
   public static async create(user: UserCreatePayload) {
-    const response = await axios.post(this.endpoint, user)
+
+    console.log(user)
+
+    const response = await axios.post(this.endpoint + "/register", user)
 
     return UserMapper(response.data)
   }
