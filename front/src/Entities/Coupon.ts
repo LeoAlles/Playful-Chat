@@ -1,24 +1,23 @@
-import { Moment } from "moment"
 import User from "./User"
 
 class Coupon {
     id: number
+    store: string
     code: string
     creator: User
-    dateCreated: Moment
     owner: User | null
 
     constructor( 
         id: number,
+        store: string,
         code: string,
         creator: User,
-        dateCreated: Moment,
         owner: User | null
     ){
         this.id = id
+        this.store = store
         this.code = code
         this.creator = creator
-        this.dateCreated = dateCreated
         this.owner = owner
     }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Room from "../../../Entities/Room";
+import RoomService from "../../../Services/RoomService";
 import { ItemContainter, FieldContainer, Name, Value } from "./style";
 
 type props = {
@@ -7,6 +8,10 @@ type props = {
 }
 
 export default function({room}:props){
+    const deleteRoom = async()=>{
+        RoomService.delete({id: room.id})
+    }
+
     return(
         <ItemContainter>
             <FieldContainer>
@@ -21,6 +26,7 @@ export default function({room}:props){
                 <Name>Created On</Name>
                 <Value>{room.dateCreated.format('DD/MM/YYYY')}</Value>
             </FieldContainer>
+            <button onClick={deleteRoom}>Delete Room</button>
         </ItemContainter>
     )
 }
