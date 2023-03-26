@@ -65,28 +65,37 @@ public class GameService {
 
         List<Game> games = findGameService.findAllByRoomId(createMessageRequest.getRoomId());
 
-        Game game = games.stream().filter(game1 -> game1.isActive()).collect(Collectors.toList()).get(0);
+        try{
 
-        if(Objects.equals(createMessageRequest.getSenderId(), game.getCreator().getId())) {
+            Game game = games.stream().filter(game1 -> game1.isActive()).collect(Collectors.toList()).get(0);
+
+            if(Objects.equals(createMessageRequest.getSenderId(), game.getCreator().getId())) {
+                return false;
+            }
+
+            if(!game.isActive()) {
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Jogo não ativo");
+            }
+
+            if(!Objects.equals(game.getAnswer().toLowerCase(), createMessageRequest.getText().toLowerCase())) {
+                return false;
+            }
+
+            UserModel winner = findUserService.findById(createMessageRequest.getSenderId());
+
+            game.setWinner(winner);
+            game.setActive(false);
+
+            gameRepository.save(game);
+
+            couponService.deliver(game.getCoupon().getId(), createMessageRequest.getSenderId());
+
+
+        }catch (Exception e) {
             return false;
         }
 
-        if(!game.isActive()) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Jogo não ativo");
-        }
 
-        if(!Objects.equals(game.getAnswer().toLowerCase(), createMessageRequest.getText().toLowerCase())) {
-            return false;
-        }
-
-        UserModel winner = findUserService.findById(createMessageRequest.getSenderId());
-
-        game.setWinner(winner);
-        game.setActive(false);
-
-        gameRepository.save(game);
-
-        couponService.deliver(game.getCoupon().getId(), createMessageRequest.getSenderId());
 
         return true;
 
