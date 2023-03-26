@@ -43,8 +43,6 @@ export default class CouponService {
   }
 
   public static async create(coupon: CouponCreatePayload) {
-    const response = await axios.post(this.endpoint, coupon)
-
-    return CouponMapper(response.data)
+    await axios.post(this.endpoint, coupon)
   }
 }
