@@ -25,13 +25,19 @@ const RoomDisplay = () => {
   },[])
 
   return (
-    <RoomWrapper>
-        <RoomTitle>{room?.name}</RoomTitle>
-        <CreatorName>Created by: {room?.creator.name}</CreatorName>
-        <Chat roomId={room?.id ?? 0}/>
-    </RoomWrapper>
+    room ? component(room) : <></>
   );
 };
+
+function component(room: Room){
+  return(
+    <RoomWrapper>
+      <RoomTitle>{room?.name}</RoomTitle>
+      <CreatorName>Created by: {room?.creator.name}</CreatorName>
+      <Chat roomId={room?.id}/>
+    </RoomWrapper>
+  )
+}
 
 export default RoomDisplay;
 
@@ -53,39 +59,3 @@ const MessageWrapper = styled.div`
 const MessageText = styled.p`
 `;
 
-
-
-  // const {id} = useParams()
-  // const [room, setRoom] = useState<Room>()
-  // const [messages, setMessages] = useState<Message[]>([])
-
-  // const currentUser = LoginService.getLogged()
-  
-  // useEffect(()=>{
-  //     const fetchRoom = async ()=>{
-  //         const room = await RoomService.get(Number(id))
-  //         setRoom(room)
-  //     }
-  //     const fetchMessages = async () => {
-  //       const messages = await MessageService.search(Number(id))
-  //       setMessages(messages)
-  //     }
-  //     fetchRoom()
-  //     fetchMessages()
-  // },[])
-
-    // <RoomWrapper>
-    //   <ChatWrapper>
-    //     <RoomTitle>{room?.name}</RoomTitle>
-    //     <CreatorName>Created by: {room?.creator.name}</CreatorName>
-    //     <MessageWrapper>
-    //       {messages.map((message) => (
-    //         <div key={message.id}>
-    //           <CreatorName>{message.sender?.name}</CreatorName>
-    //           <MessageText>{message.text}</MessageText>
-    //         </div>
-    //       ))}
-    //     </MessageWrapper>
-    //   </ChatWrapper>
-    //   <MessagePrompt currentUser={currentUser!} roomId={room!.id}/>
-    // </RoomWrapper>

@@ -15,12 +15,18 @@ function Chat({roomId}: props) {
     const [text, setText] = useState("");
 
     useEffect(() => {
+        const fetchMessages = async () => {
+            const messages = await MessageService.search(roomId)
+            setMessages(messages)
+        }
+        fetchMessages()
+
         const client = new Client({
             brokerURL: 'ws://localhost:8080/ws',
             connectHeaders: {
             },
             onConnect: () => {
-                client.subscribe(`/topic/1`, message =>
+                client.subscribe(`/topic/${roomId}`, message =>
                     handleMessage(message.body)
                 );
 
