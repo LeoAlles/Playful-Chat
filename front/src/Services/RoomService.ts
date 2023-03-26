@@ -57,6 +57,6 @@ export default class RoomService{
     }
 
     public static async delete(room : RoomDeletePayload){
-        await axios.delete(this.endpoint + `/${room.id}`)
+        await axios.delete(this.endpoint + `/delete/${room.id}`)
     }
 }

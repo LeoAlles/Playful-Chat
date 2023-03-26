@@ -29,7 +29,7 @@ export default function     Home(){
             <LoginCard>
                 <Form onSubmit={(e) => {submitForm(e)}}>
                     <Label>
-                        UserName:
+                        Email:
                         <Input 
                             type="text" 
                             name="name" 

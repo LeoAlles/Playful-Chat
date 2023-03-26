@@ -17,7 +17,7 @@ function App() {
     <>
       <Navbar/>
         <Routes>
-          <Route path="/" element={ <Chat/>}></Route>
+          <Route path="/" element={<Home/>}></Route>
           <Route path="/rooms/search" element={<RoomSearch/>}></Route>
           <Route path="/rooms/:id" element={<Room/>}></Route>
           <Route path="/coupons/create" element={<CouponForm/>}></Route>
@@ -26,6 +26,7 @@ function App() {
           <Route path="/games/search" element={<GamesSearch/>}></Route>
           <Route path="/users/create" element={<CreateUser/>}></Route>
           <Route path="/rooms/create" element={<CreateRoom/>}></Route>
+          <Route path="/chat" element={ <Chat/>}></Route>
         </Routes>
     </>
   );

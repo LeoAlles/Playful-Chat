@@ -10,7 +10,8 @@ export const LoginCard = styled.div`
     padding: 2em;
     margin-top: 2em;
     background-color: #408E91;
-    box-shadow: 10px 10px 10px #ccc
+    box-shadow: 10px 10px 10px #ccc;
+    border-radius: 5px;
 `
 
 export const Form = styled.form`
@@ -22,6 +23,7 @@ export const Label = styled.label`
     display: flex;
     flex-direction: column;
     padding-bottom: 4em;   
+    font-weight: bold;
 `
 
 export const Submit = styled.input`

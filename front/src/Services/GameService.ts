@@ -33,15 +33,21 @@ function GameMapper(response: gameResponse): Game {
 }
 
 export default class GameService {
-    private static endpoint = 'http://localhost:8080/api/games' 
-    
-    public static async searchAll() {
-      const response: gameResponse[] = (await axios.get(this.endpoint)).data
+  private static endpoint = 'http://localhost:8080/api/games' 
   
-      return response.map(GameMapper)
-    }
-  
-    public static async create(game: createGamePayload) {
-      await axios.post(this.endpoint, game)
-    }
+  public static async searchAll() {
+    const response: gameResponse[] = (await axios.get(this.endpoint)).data
+
+    return response.map(GameMapper)
   }
+
+  public static async create(game: createGamePayload) {
+    await axios.post(this.endpoint, game)
+  }
+
+  public static async searchGamesInRoom(roomId: number) {
+    const response: gameResponse[] = (await axios.get(this.endpoint + "/room/" + roomId)).data
+
+    return response.map(GameMapper)
+  }
+}
