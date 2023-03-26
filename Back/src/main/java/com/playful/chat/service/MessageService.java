@@ -76,9 +76,12 @@ public class MessageService {
 
 
         }else {
-            message.setSender(sender);
-
-            gameService.checkAnswer(createMessageRequest);
+            if(gameService.checkAnswer(createMessageRequest)){
+                message.setText("Parabéns " + message.getSender().getName() + ", você ganhou!");
+                message.setSender(null);
+            }else{
+                message.setSender(sender);
+            };
         }
 
         message.setSendAt(LocalDateTime.now());

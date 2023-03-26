@@ -18,8 +18,8 @@ function colorResolver(message: Message, currentUser: User){
 }
 
 function marginResolver(message: Message, currentUser: User){
-    if(message.sender == null)
-        return 'space-arround'
+    if(!message.sender)
+        return 'space-around'
     else if(message.sender.id == currentUser.id)
         return 'flex-end'
     else
