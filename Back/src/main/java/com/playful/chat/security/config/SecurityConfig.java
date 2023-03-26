@@ -1,5 +1,6 @@
 package com.playful.chat.security.config;
 
+import com.playful.chat.security.model.Authority;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -27,18 +28,14 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .cors()
-
                 .and()
-                    .authorizeRequests()
-                        .antMatchers(POST, "/users/**").permitAll()
-                .antMatchers("/api/**").permitAll()
-                .antMatchers(POST, "/login").permitAll()
+                .authorizeRequests().antMatchers("/api/**").hasRole("USER")
                 .and()
-                .authorizeRequests().antMatchers("/ws/**").permitAll()
+                .authorizeRequests().antMatchers("/register", "/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
                     .httpBasic()
                         .authenticationEntryPoint((request, response, authException) -> response.setStatus(UNAUTHORIZED.value()))
-
                 .and()
                     .logout()
                         .logoutSuccessHandler((request, response, authentication) -> response.setStatus(OK.value()));

@@ -44,6 +44,10 @@ public class RoomService {
         return roomRepository.findAll().stream().map(RoomMapper::toResponse).collect(Collectors.toList());
     }
 
+    public List<RoomResponse> listByName(String name) {
+        return roomRepository.findAllByNameContainingIgnoreCase(name).stream().map(RoomMapper::toResponse).collect(Collectors.toList());
+    }
+
     public void delete(Long roomId) {
         roomRepository.deleteById(roomId);
     }
