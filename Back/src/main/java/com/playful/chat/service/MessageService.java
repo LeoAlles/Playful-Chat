@@ -56,6 +56,7 @@ public class MessageService {
         Message message = MessageMapper.toEntity(createMessageRequest);
 
         message.setRoom(room);
+        message.setSender(sender);
 
         Long gameId;
 
@@ -79,9 +80,7 @@ public class MessageService {
             if(gameService.checkAnswer(createMessageRequest)){
                 message.setText("Parabéns " + message.getSender().getName() + ", você ganhou!");
                 message.setSender(null);
-            }else{
-                message.setSender(sender);
-            };
+            }
         }
 
         message.setSendAt(LocalDateTime.now());
