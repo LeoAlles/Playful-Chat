@@ -1,12 +1,7 @@
 import styled from "styled-components"
 
-export const HomeContainer = styled.div`
-    display:flex;
-    justify-content: space-around;    
-`
-
 export const LoginCard = styled.div`
-    width: 50%;
+    width: 100%;
     padding: 2em;
     margin-top: 2em;
     background-color: #408E91;
@@ -26,21 +21,6 @@ export const Label = styled.label`
     font-weight: bold;
 `
 
-export const Submit = styled.input`
-    width: min-content;
-    padding: 0.3em;
-    background-color: #E49393;
-    border: 0;
-    margin-left: auto;
-    box-shadow: 5px 5px 0px #ccc;
-    font-weight: bold;
-    border-radius: 5px;
-
-    :hover{
-        background-color: #E49393;
-        box-shadow: none;
-    }
-`
 
 export const Input = styled.input`
     padding: 0.5em;
