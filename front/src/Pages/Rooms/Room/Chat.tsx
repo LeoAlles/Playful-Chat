@@ -57,6 +57,7 @@ function Chat({roomId}: props) {
             senderId: currentUser?.id ?? 0,
             roomId: roomId
         })
+        setText("")
     };
 
     return (
@@ -86,34 +87,32 @@ function Chat({roomId}: props) {
 export default Chat;
 
 const Container = styled.div`
-  width: 100%;
-  height: 600px;
-  margin: auto; 
-  border: 1px ease #555;
-  margin-top: 3em;
-  overflow-y: scroll;
-  background-color: #f5f5f5;
-  border-radius: 1em;
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 600px;
+    margin: auto; 
+    border: 1px ease #555;
+    margin-top: 3em;
+    overflow-y: scroll;
+    background-color: #f5f5f5;
+    border-radius: 1em;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
 `;
 
 const FormWrapper = styled.form``;
 
 const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 2em 0 2em 0;
+    display: flex;
+    flex-direction: row;
+    margin: 2em 0 2em 0;
 `;
 
-const Label = styled.label``;
-
 const Input = styled.input`
-  padding: 1em;
-  font-size: 1.2em;
-  border: 1px solid #ccc;
-  border-radius: 0.5em;
-  width: 80%;
-  margin-right: 1em;
+    padding: 1em;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    width: 80%;
+    margin-right: 1em;
 `;
 
 const Button = styled.button`

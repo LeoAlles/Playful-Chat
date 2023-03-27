@@ -5,7 +5,7 @@ import moment from "moment";
 import UserService from "../../Services/UserService";
 import Toaster from "../../Components/Toaster/Toaster";
 
-const UserForm = () => {
+function CreateUserForm(){
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -77,7 +77,7 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default CreateUserForm;
 
 const Container = styled.div`
   width: 75%;

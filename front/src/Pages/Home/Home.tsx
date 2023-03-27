@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import LoginService from "../../Services/LoginService"
-import { HomeContainer, LoginCard, Form, Label, Submit, Input} from "./style"
+import { HomeContainer, LoginCard, Form, Label, Submit} from "./style"
 import styled from "styled-components";
 import NavButton from "../../Components/NavButton/NavButton";
 import Toaster from "../../Components/Toaster/Toaster";
 
-export default function     Home(){
+export default function Home(){
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -60,3 +60,12 @@ const FlexContainer = styled.div `
     display: flex;
     justify-content: right;
 `
+const Input = styled.input`
+    padding: 1em;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    width: 80%;
+    margin-right: 1em;
+    margin-top: 0.5em;
+`;

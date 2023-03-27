@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-type NavButtonProps = {
+type props = {
   link: string;
   children: string;
 };
 
-const NavButton: React.FC<NavButtonProps> = ({ link, children }) => {
+function NavButton({ link, children }: props){
   const handleClick = () => {
     window.location.href = link;
   };

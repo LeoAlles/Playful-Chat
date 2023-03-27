@@ -9,11 +9,9 @@ import Message from "../../../Entities/Message";
 import MessageService from "../../../Services/MessageService";
 import Chat from "./Chat";
 
-const RoomDisplay = () => {
+function RoomDisplay(){
   const {id} = useParams()
   const [room, setRoom] = useState<Room>()
-
-  const currentUser = LoginService.getLogged()
 
   useEffect(()=>{
       const fetchRoom = async ()=>{

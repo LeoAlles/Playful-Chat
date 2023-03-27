@@ -2,20 +2,22 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import CouponService from '../../../Services/CouponService'
 import styled from 'styled-components'
 import Coupon from '../../../Entities/Coupon'
+import LoginService from '../../../Services/LoginService'
 
-type SelectCouponProps = {
+type props = {
   changeSelectedCoupon: (selectedCoupon: Coupon | null) => void
 }
 
-const SelectCoupon: React.FC<SelectCouponProps> = ({
-  changeSelectedCoupon,
-}) => {
+function SelectCoupon({changeSelectedCoupon}: props){
   const [coupons, setCoupons] = useState<Coupon[]>([]);
 
   useEffect(() => {
     const fetchCoupons = async () => {
       const coupons = await CouponService.searchAll();
-      setCoupons(coupons);
+      const me = LoginService.getLogged()?.id
+      if(!me) return
+
+      setCoupons(coupons.filter((c: Coupon) => c.creator.id == me));
     };
 
     fetchCoupons();

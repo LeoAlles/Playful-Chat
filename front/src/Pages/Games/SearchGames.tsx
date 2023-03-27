@@ -5,7 +5,7 @@ import Game from "../../Entities/Game"
 import NavButton from '../../Components/NavButton/NavButton';
 import LoginService from '../../Services/LoginService';
 
-const GamesSearch = () => {
+function GamesSearch(){
   const [games, setGames] = useState<Game[]>([]);
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
 
@@ -46,21 +46,21 @@ const GamesSearch = () => {
         </NavButton>
       </TopContainer>
       <SearchContainer>
-                <Input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search"
-                />
-                <label>
-                    <Input
-                        type="radio"
-                        checked={onlyMine}
-                        onClick={handleOnlyMineChange}
-                    />
-                    Only my Games                    
-                </label>
-            </SearchContainer>
+        <Input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search"
+        />
+        <label>
+          <Input
+            type="radio"
+            checked={onlyMine}
+            onClick={handleOnlyMineChange}
+          />
+            Only my Games                    
+        </label>
+      </SearchContainer>
         {filteredGames.map(game => (
           <GameListItem key={game.id}>
             <h3>Game {game.id}</h3>
@@ -85,7 +85,7 @@ const GamesSearch = () => {
                 Answer
               </Name>
               <Value>
-                {game.answer}
+                {onlyMine ? game.answer : "-"}
               </Value>
             </FieldContainer>
           </GameListItem>
